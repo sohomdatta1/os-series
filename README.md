@@ -1,12 +1,6 @@
-# Write Your Own 64-bit Operating System Kernel From Scratch
+# Tinkeros
 
-This respository holds all the source code for [this YouTube tutorial series](https://www.youtube.com/playlist?list=PLZQftyCk7_SeZRitx5MjBKzTtvk0pHMtp).
-
-You can find the revision for a specific episode on [this page](https://github.com/davidcallanan/yt-os-series/tags).
-
-You can find pre-built ISO files for this kernel at [this repository](https://github.com/davidcallanan/os-series-isos).
-
-Considering supporting this work via [my Patreon page](http://patreon.com/codepulse).
+A playground that I want to use to experiment with low-level programming and learn some OS development basics.
 
 ## Prerequisites
 
@@ -47,3 +41,13 @@ Alternatively, you should be able to load the operating system on a USB drive an
 
 Remove the build-evironment image:
  - `docker rmi myos-buildenv -f`
+
+## Credits
+
+This respository holds all the source code for [this YouTube tutorial series](https://www.youtube.com/playlist?list=PLZQftyCk7_SeZRitx5MjBKzTtvk0pHMtp).
+
+You can find the revision for a specific episode on [this page](https://github.com/davidcallanan/yt-os-series/tags).
+
+You can find pre-built ISO files for this kernel at [this repository](https://github.com/davidcallanan/os-series-isos).
+
+Considering supporting this work via [my Patreon page](http://patreon.com/codepulse).
