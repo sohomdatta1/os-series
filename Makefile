@@ -4,8 +4,6 @@ kernel_object_files := $(patsubst src/kernel/%.c, build/kernel/%.o, $(kernel_sou
 x86_64_asm_source_files := $(shell find src/x86_64 -name *.asm)
 x86_64_asm_object_files := $(patsubst src/x86_64/%.asm, build/x86_64/%.o, $(x86_64_asm_source_files))
 
-x86_64_object_files := $(x86_64_c_object_files) $(x86_64_asm_object_files)
-
 $(kernel_object_files): build/kernel/%.o : src/kernel/%.c
 	mkdir -p $(dir $@) && \
 	x86_64-elf-gcc -c -I src/libc/include -I src/kernel/include -ffreestanding $(patsubst build/kernel/%.o, src/kernel/%.c, $@) -o $@

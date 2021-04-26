@@ -1,7 +1,10 @@
+#include "include/serial.h"
 
+static inline int halt() {
+  asm("hlt");
+}
 
 void kernel_main() {
-  for(;;){
-
-  }
+  print("Hello World\n");
+  halt();
 }
