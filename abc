@@ -1,0 +1,8 @@
+$link = $this->parser->getLinkRenderer()->makeLink(
+					$pageTitle,
+					$view,
+					[
+						"class": "prp-pagequality-3 quality3",
+						"data-page-index": "123"
+					]
+				);
