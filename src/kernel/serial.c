@@ -27,16 +27,24 @@ static bool __init_serial_port() {
   return true;
 }
 
-void print(const char * msg) {
+void serial_print_byte(const char character) {
   if (!serial_port_is_initialized) {
     __init_serial_port();
+    for(int i = 0; i < 50; i++) {
+      out_byte(PORT, '-');
+    }
+
+    out_byte(PORT, '\n');
+
     serial_port_is_initialized = true;
   }
 
-  while(*msg != '\0' ) {
-    // Wait for input byte to be error free
-    while(in_byte(PORT + 5) & 0x20 == 0);
-    out_byte(PORT, *msg++);
-  }
+  // Wait for input byte to be error free
+  while(in_byte(PORT + 5) & 0x20 == 0);
+
+  out_byte(PORT, character);
 }
 
+void serial_print_string(const char * msg) {
+  while(*msg != '\0') serial_print_byte(*msg++);
+}

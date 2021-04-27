@@ -1,3 +1,4 @@
 #pragma once
 
-void print(const char *);
+void serial_print_byte(const char);
+void serial_print_string(const char *);

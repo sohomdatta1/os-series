@@ -1,10 +1,15 @@
-#include "include/serial.h"
+#include "include/common.h"
 
 static inline int halt() {
   asm("hlt");
 }
 
+static void loop() {
+  for(;;);
+}
+
 void kernel_main() {
-  print("Hello World\n");
+  k_printf("Hello World %b", -5);
+  loop();
   halt();
 }
