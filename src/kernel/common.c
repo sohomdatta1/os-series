@@ -1,12 +1,20 @@
-#include <stddef.h>
-#include <stdbool.h>
-#include <stdarg.h>
 #include "include/serial.h"
+#include "include/common.h"
 
-size_t strlen(const char * msg) {
+size_t str_len(const char * msg) {
   size_t len = 0;
   while(*++msg != '\0') len++;
-  return len;
+  return len + 1;
+}
+
+char * str_rev(char * str, int n) {
+  char temp = '\0';
+  for(int i = 0; i <= (n-1)/2; i++) {
+    temp = str[i];
+    str[i] = str[(n-1)-i];
+    str[(n-1)-i] = temp;
+  }
+  return str;
 }
 
 void * memcpy(void * dst, const void * src, size_t n) {
@@ -61,7 +69,7 @@ void __print_hex(int num) {
   }
 
   if(num < 0) {
-    serial_print_byte('-');
+    serial_print_string("-");
     num *= -1;
   }
 
@@ -70,18 +78,14 @@ void __print_hex(int num) {
   char temp = 0;
 
   while(num > 0) {
-    if (num <= 9)
+    if ((num & 0xf) <= 9)
       hex_num[c++] = (48 + (num & 0xf));
-    else
+    else {
       hex_num[c++] = (65 + ((num & 0xf) % 10));
+    }
     num = num >> 4;
   }
-
-  for(int i = 0; i <= (c-1)/2; i++) {
-    temp = hex_num[i];
-    hex_num[i] = hex_num[(c-1)-i];
-    hex_num[(c-1)-i] = temp;
-  }
+  str_rev(hex_num, c);
   hex_num[c++] = '\0';
 
   serial_print_string("0x");
@@ -95,7 +99,7 @@ void __print_bin(int num) {
   }
 
   if(num < 0) {
-    serial_print_byte('-');
+    serial_print_string("-");
     num *= -1;
   }
 
@@ -107,11 +111,7 @@ void __print_bin(int num) {
     num = num >> 1;
   }
 
-  for(int i = 0; i <= (c-1)/2; i++) {
-    temp = bin_num[i];
-    bin_num[i] = bin_num[(c-1)-i];
-    bin_num[(c-1)-i] = temp;
-  }
+  str_rev(bin_num, c);
   bin_num[c++] = '\0';
 
   serial_print_string("0b");
@@ -122,7 +122,7 @@ void kernel_printf(const char * msg, ...) {
   va_list args;
   va_start(args, msg);
   while(*msg != '\0') {
-    if (msg[0] != '%' && msg[1] != '\0')
+    if (msg[0] != '%')
       serial_print_byte(*msg);
     else {
       switch(msg[1]) {
@@ -147,6 +147,10 @@ void kernel_printf(const char * msg, ...) {
           __print_bin(va_arg(args, int));
         }
         break;
+        default: {
+          serial_print_byte('%');
+          msg--;
+        }
       }
       msg++;
     }
