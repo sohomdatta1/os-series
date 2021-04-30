@@ -10,7 +10,7 @@ static void loop() {
 }
 
 void kernel_main() {
-  k_printf("Welcome to tinker-os");
+  k_printf("Welcome to tinker-os %s", "Hello");
   text_mode_init();
   text_mode_write("Welcome to tinker-os");
   loop();

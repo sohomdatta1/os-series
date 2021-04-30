@@ -15,6 +15,9 @@ $(x86_64_asm_object_files): build/x86_64/%.o : src/x86_64/%.asm
 clean:
 	rm -rf build/* dist/*
 
+scratch_build:
+	./compile_test.sh
+
 .PHONY: build-x86_64
 build-x86_64: $(kernel_object_files) $(x86_64_asm_object_files)
 	mkdir -p dist/x86_64 && \

@@ -147,6 +147,10 @@ void kernel_printf(const char * msg, ...) {
           __print_bin(va_arg(args, int));
         }
         break;
+        case 's': {
+          serial_print_string(va_arg(args, char *));
+        }
+        break;
         default: {
           serial_print_byte('%');
           msg--;

@@ -36,7 +36,7 @@ You can emulate your operating system using [Qemu](https://www.qemu.org/): (Don'
 
 Remove the build-evironment image:
 
-- `docker rmi myos-buildenv -f`
+- `docker rmi tinkeros -f`
 
 ## Credits
 
