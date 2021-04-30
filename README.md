@@ -32,8 +32,6 @@ You can emulate your operating system using [Qemu](https://www.qemu.org/): (Don'
 - `qemu-system-x86_64 -serial stdio -cdrom dist/x86_64/kernel.iso`
 - NOTE: When building your operating system, if changes to your code fail to compile, ensure your QEMU emulator has been closed, as this will block writing to `kernel.iso`.
 
-Alternatively, you should be able to load the operating system on a USB drive and boot into it when you turn on your computer. (I haven't actually tested this yet.)
-
 ## Cleanup
 
 Remove the build-evironment image:
