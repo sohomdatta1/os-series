@@ -1,4 +1,5 @@
 #include "include/common.h"
+#include "include/vga_text.h"
 
 static inline int halt() {
   asm("hlt");
@@ -9,7 +10,9 @@ static void loop() {
 }
 
 void kernel_main() {
-  k_printf("Hello World %b", -5);
+  k_printf("Welcome to tinker-os");
+  text_mode_init();
+  text_mode_write("Welcome to tinker-os");
   loop();
   halt();
 }

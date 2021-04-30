@@ -157,5 +157,4 @@ void kernel_printf(const char * msg, ...) {
     msg++;
   }
   va_end(args);
-  serial_print_byte('\n');
 }

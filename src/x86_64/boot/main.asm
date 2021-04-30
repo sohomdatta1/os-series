@@ -54,7 +54,7 @@ check_long_mode:
 	cpuid
 	test edx, 1 << 29
 	jz .no_long_mode
-	
+
 	ret
 .no_long_mode:
 	mov al, "L"
@@ -64,7 +64,7 @@ setup_page_tables:
 	mov eax, page_table_l3
 	or eax, 0b11 ; present, writable
 	mov [page_table_l4], eax
-	
+
 	mov eax, page_table_l2
 	or eax, 0b11 ; present, writable
 	mov [page_table_l3], eax
